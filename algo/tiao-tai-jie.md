@@ -1,21 +1,24 @@
-```
 
-/**
-```
+# 上台阶
 
-```
- * # 上台阶
- * 一共有 n 个台阶, 每次可以上1个或2个, 问一共有多少种走法 
- * 类似题 青蛙过河 https://leetcode-cn.com/problems/frog-jump/
- *
- * 1个台阶时, 1种
- * 2个时, 2种
- * 3个时, 可以分解为从第1级跳2个, 或者从第2级跳1个两种情况, f(2) + f(1)
- * 4个, f(3) + f(2)
- * n个, n > 2 时 f(n) = f(n - 1) + f(n - 2) 
- */
+## 题目
 
-// 递归
+一共有 n 个台阶, 每次可以上1个或2个, 问一共有多少种走法 
+类似题 青蛙过河 https://leetcode-cn.com/problems/frog-jump/
+
+## 思路
+
+1个台阶时, 1种
+2个时, 2种
+3个时, 可以分解为从第1级跳2个, 或者从第2级跳1个两种情况, f(2) + f(1)
+4个, f(3) + f(2)
+n个, n > 2 时 f(n) = f(n - 1) + f(n - 2) 
+
+## 解答
+
+###  递归
+
+```javascript
 function goToStepsTimes(n) {
     if (n === 1) return 1
     if (n === 2) return 2
@@ -23,9 +26,11 @@ function goToStepsTimes(n) {
 }
 
 console.log(goToStepsTimes(8))
+```
 
-// 动态规划
+### 动态规划
 
+```js
 function goToStepsTimesDP(n) {
     if (n === 1) return 1
     if (n === 2) return 2
@@ -37,19 +42,22 @@ function goToStepsTimesDP(n) {
 }
 
 console.log(goToStepsTimesDP(8))
+```
 
 
-/**
- * 输出所有可能的走法
- * 如 n = 2
- * [1, 1], [2]
- * 如 n = 3
- * [1, 1, 1], [1, 2], [2, 1], 
- * n = 4 
- * [1, 1, 1, 1], [1, 2, 1], [2, 1, 1]
- * [1, 1, 2], [2, 2]
- */
+ ## 题目2 输出所有可能的走法
 
+ 如 n = 2
+ 结果为 [1, 1], [2]
+ 如 n = 3
+ 结果为 [1, 1, 1], [1, 2], [2, 1], 
+ n = 4 
+ 结果为 [1, 1, 1, 1], [1, 2, 1], [2, 1, 1], [1, 1, 2], [2, 2]
+
+## 解答
+
+### 递归
+```js
 function goToStepsAllResultRecursion(n) {
     if (n === 1) return [[1]]
     if (n === 2) return [[1, 1], [2]]
@@ -59,8 +67,10 @@ function goToStepsAllResultRecursion(n) {
 }
 
 console.log(goToStepsAllResultRecursion(6))
+```
 
-// 动态规划
+### 动态规划
+```js
 function goToStepsAllResultDP(n) {
     let store = {
         1: [[1]],
